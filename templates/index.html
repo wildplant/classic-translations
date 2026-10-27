@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>经典神学与哲学重译研读馆 · Classic Translations</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --bg-body: #f7f4ed;
+            --bg-card: #ffffff;
+            --bg-toolbar: #f0ebe1;
+            --text-main: #2b2621;
+            --text-muted: #6e655c;
+            --text-light: #9a8f82;
+            --border-color: #e5ded3;
+            --border-subtle: #eee7dc;
+            --accent-primary: #8e3b23;
+            --accent-secondary: #2f536e;
+            --badge-bg: #eedfcc;
+            --badge-text: #733c1d;
+            --shadow-sm: 0 2px 8px rgba(43, 38, 33, 0.05);
+            --shadow-md: 0 6px 20px rgba(43, 38, 33, 0.08);
+            --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, Georgia, serif;
+            --font-en: "Lora", Georgia, "Times New Roman", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+
+        [data-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-toolbar: #f1f5f9;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --border-color: #e2e8f0;
+            --border-subtle: #f1f5f9;
+            --accent-primary: #1e40af;
+            --accent-secondary: #0f766e;
+            --badge-bg: #dbeafe;
+            --badge-text: #1e40af;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #121316;
+            --bg-card: #1a1b1f;
+            --bg-toolbar: #222328;
+            --text-main: #e2e4e9;
+            --text-muted: #9ba1ad;
+            --text-light: #6c7280;
+            --border-color: #2b2e36;
+            --border-subtle: #24262d;
+            --accent-primary: #d97745;
+            --accent-secondary: #4ea8de;
+            --badge-bg: #382c23;
+            --badge-text: #f3a072;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        [data-theme="sepia"] {
+            --bg-body: #ebdcc3;
+            --bg-card: #f5ebda;
+            --bg-toolbar: #dfceb2;
+            --text-main: #362819;
+            --text-muted: #68543f;
+            --text-light: #8c755c;
+            --border-color: #d8c2a3;
+            --border-subtle: #e2d2b9;
+            --accent-primary: #7d2e1b;
+            --accent-secondary: #3f6055;
+            --badge-bg: #debfa0;
+            --badge-text: #592314;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-serif);
+            color: var(--text-main);
+            background: var(--bg-body);
+            line-height: 1.75;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        header.site-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 36px 32px 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .brand h1 {
+            font-family: "Cinzel", var(--font-serif);
+            font-size: 28px;
+            color: var(--accent-primary);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .brand h1 .subtag {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            padding: 3px 11px;
+            border-radius: 999px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+        }
+
+        .brand p {
+            margin-top: 8px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .theme-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-sans);
+        }
+
+        .action-btn {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 13px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-toolbar);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn.active, .action-btn:hover {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-color: var(--accent-primary);
+        }
+
+        main.container {
+            max-width: 1280px;
+            margin: 36px auto 80px;
+            padding: 0 32px;
+        }
+
+        .section-heading {
+            font-family: var(--font-sans);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        @media (max-width: 640px) {
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--accent-primary);
+            border-radius: 12px;
+            padding: 26px 28px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-meta-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-sans);
+            font-size: 12.5px;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .chapter-badge {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 4px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .card-title-en {
+            font-family: "Cinzel", var(--font-en);
+            font-size: 15px;
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-desc {
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-family: var(--font-sans);
+            font-size: 12px;
+        }
+
+        .stat-pill {
+            background: var(--bg-toolbar);
+            border: 1px solid var(--border-subtle);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--text-muted);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 16px;
+        }
+
+        .btn-primary {
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 9px 18px;
+            border-radius: 8px;
+            background: var(--accent-primary);
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .toc-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toc-table th, .toc-table td {
+            padding: 12px 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .toc-table th {
+            background: var(--bg-toolbar);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .toc-table tr:last-child td { border-bottom: none; }
+        .status-done {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status-pending {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: var(--bg-toolbar);
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+        }
+    </style>
+</head>
+<body data-theme="parchment">
+<header class="site-header">
+    <div class="header-inner">
+        <div class="brand">
+            <h1>CLASSIC TRANSLATIONS <span class="subtag">三栏逐段对勘研读馆</span></h1>
+            <p>C. S. 路易斯《荣耀之重：暨其他演讲》（The Weight of Glory and Other Addresses）英文原稿 · 旧译本 · 2026精研新译</p>
+        </div>
+        <div class="theme-bar">
+            <button class="action-btn active" data-theme-val="parchment">书卷</button>
+            <button class="action-btn" data-theme-val="light">明亮</button>
+            <button class="action-btn" data-theme-val="dark">深邃</button>
+            <button class="action-btn" data-theme-val="sepia">复古</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <div class="section-heading">
+        <span>已发布精研译本（{{ARTICLE_COUNT}} 篇）</span>
+        <span style="font-size: 13px; font-weight: 400; color: var(--text-muted);">圣经引文统一采用中文和合本（神版）｜ 支持单文件离线传阅</span>
+    </div>
+
+    <div class="cards-grid">
+        {{CARDS_HTML}}
+    </div>
+
+    <div class="section-heading">
+        <span>《荣耀之重：暨其他演讲》全书九篇书目与进度总览</span>
+        <span style="font-size: 13px; font-weight: 400; color: var(--text-muted);">底本已归档于 sources/荣耀之重_CS路易斯.epub</span>
+    </div>
+
+    <table class="toc-table">
+        <thead>
+            <tr>
+                <th>原书篇序</th>
+                <th>英文原题</th>
+                <th>2026 新译篇名</th>
+                <th>邓军海旧译篇名</th>
+                <th>EPUB 章节定位</th>
+                <th>状态 / 入口</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>第一篇</td>
+                <td>The Weight of Glory (1941)</td>
+                <td>荣耀之重</td>
+                <td>一 荣耀之重</td>
+                <td><code>Section0004-0005</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+            <tr>
+                <td>第二篇</td>
+                <td>Learning in War-Time (1939)</td>
+                <td>战时求学</td>
+                <td>二 战时求学</td>
+                <td><code>Section0006-0007</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+            <tr>
+                <td>第三篇</td>
+                <td>Why I Am Not a Pacifist (1940)</td>
+                <td>我为何不是和平主义者</td>
+                <td>三 我缘何不是和平主义者</td>
+                <td><code>Section0008-0009</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+            <tr>
+                <td>第四篇</td>
+                <td>Transposition (1944)</td>
+                <td>高下转调</td>
+                <td>四 高下转换</td>
+                <td><code>Section0010-0011</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+            <tr>
+                <td>第五篇</td>
+                <td>Is Theology Poetry? (1944)</td>
+                <td>神学是诗吗？</td>
+                <td>五 神学是诗？</td>
+                <td><code>Section0012-0013</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+            <tr>
+                <td>第六篇</td>
+                <td><strong>The Inner Ring (1944)</strong></td>
+                <td><strong>核心圈</strong></td>
+                <td>六 话圈内</td>
+                <td><code>Section0014-0015</code></td>
+                <td><a href="the-inner-ring.html" class="status-done" style="text-decoration:none;">✓ 已完成 · 点击阅读 →</a></td>
+            </tr>
+            <tr>
+                <td>第七篇</td>
+                <td><strong>Membership (1945)</strong></td>
+                <td><strong>互为肢体</strong></td>
+                <td>七 和而不同</td>
+                <td><code>Section0016-0017</code></td>
+                <td><a href="membership.html" class="status-done" style="text-decoration:none;">✓ 已完成 · 点击阅读 →</a></td>
+            </tr>
+            <tr>
+                <td>第八篇</td>
+                <td>On Forgiveness (1947)</td>
+                <td>论饶恕</td>
+                <td>八 论赦免</td>
+                <td><code>Section0018-0019</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+            <tr>
+                <td>第九篇</td>
+                <td>A Slip of the Tongue (1956)</td>
+                <td>说走了嘴</td>
+                <td>九 说漏了嘴</td>
+                <td><code>Section0020-0021</code></td>
+                <td><span class="status-pending">待精译</span></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    Classic Translations · 三栏逐段对勘与重译项目（由 <code>build.py</code> 自动构建生成）
+</footer>
+
+<script>
+    const themeBtns = document.querySelectorAll('[data-theme-val]');
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const theme = btn.getAttribute('data-theme-val');
+            document.body.setAttribute('data-theme', theme);
+            themeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>{{PAGE_TITLE}}</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 130px;
+        }
+
+        :root {
+            --cbar-height: 52px;
+            --thead-height: 44px;
+
+            --bg-body: #f7f4ed;
+            --bg-card: #ffffff;
+            --bg-toolbar: #f0ebe1;
+            --text-main: #2b2621;
+            --text-muted: #6e655c;
+            --text-light: #9a8f82;
+            --border-color: #e5ded3;
+            --border-subtle: #eee7dc;
+            --accent-primary: #8e3b23;
+            --accent-secondary: #2f536e;
+            --accent-hover: #b54f32;
+            --row-hover-bg: #fdfbf7;
+            --row-active-bg: #f9f3e8;
+            --badge-bg: #eedfcc;
+            --badge-text: #733c1d;
+            --highlight-bg: #ffe08a;
+            --shadow-sm: 0 2px 8px rgba(43, 38, 33, 0.05);
+            --shadow-md: 0 6px 20px rgba(43, 38, 33, 0.08);
+            --shadow-lg: 0 12px 32px rgba(43, 38, 33, 0.12);
+            --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, Georgia, serif;
+            --font-en: "Lora", Georgia, "Times New Roman", serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            --base-font-size: 16px;
+            --column-gap: 20px;
+        }
+
+        /* Theme: Modern Clean Light */
+        [data-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-toolbar: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
+            --border-color: #e2e8f0;
+            --border-subtle: #f1f5f9;
+            --accent-primary: #1e40af;
+            --accent-secondary: #0f766e;
+            --accent-hover: #2563eb;
+            --row-hover-bg: #f8fafc;
+            --row-active-bg: #eff6ff;
+            --badge-bg: #dbeafe;
+            --badge-text: #1e40af;
+            --highlight-bg: #fde047;
+        }
+
+        /* Theme: Midnight Dark */
+        [data-theme="dark"] {
+            --bg-body: #121316;
+            --bg-card: #1a1b1f;
+            --bg-toolbar: #222328;
+            --text-main: #e2e4e9;
+            --text-muted: #9ba1ad;
+            --text-light: #6c7280;
+            --border-color: #2b2e36;
+            --border-subtle: #24262d;
+            --accent-primary: #d97745;
+            --accent-secondary: #4ea8de;
+            --accent-hover: #f08c58;
+            --row-hover-bg: #21232a;
+            --row-active-bg: #262933;
+            --badge-bg: #382c23;
+            --badge-text: #f3a072;
+            --highlight-bg: #785a18;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Theme: Warm Sepia */
+        [data-theme="sepia"] {
+            --bg-body: #ebdcc3;
+            --bg-card: #f5ebda;
+            --bg-toolbar: #dfceb2;
+            --text-main: #362819;
+            --text-muted: #68543f;
+            --text-light: #8c755c;
+            --border-color: #d8c2a3;
+            --border-subtle: #e2d2b9;
+            --accent-primary: #7d2e1b;
+            --accent-secondary: #3f6055;
+            --accent-hover: #9e3d25;
+            --row-hover-bg: #f9f2e6;
+            --row-active-bg: #eedebd;
+            --badge-bg: #debfa0;
+            --badge-text: #592314;
+            --highlight-bg: #f7cf74;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-serif);
+            font-size: var(--base-font-size);
+            line-height: 1.82;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            transition: background-color 0.25s ease, color 0.25s ease;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Area */
+        header.site-header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 32px 18px 32px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            z-index: 50;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1720px;
+            margin: 0 auto;
+        }
+
+        .title-group h1 {
+            font-family: "Cinzel", var(--font-serif);
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--accent-primary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .title-group h1 .subtag {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            letter-spacing: 0;
+        }
+
+        .title-meta {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .title-meta span.divider {
+            color: var(--border-color);
+        }
+
+        /* Top Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-toolbar);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: var(--bg-card);
+        }
+
+        .action-btn.active {
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-color: var(--accent-primary);
+        }
+
+        /* Sticky Control Bar */
+        .control-bar {
+            position: sticky;
+            top: 0;
+            background: var(--bg-toolbar);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            z-index: 45;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8px 32px;
+            transition: all 0.2s ease;
+        }
+
+        .control-container {
+            max-width: 1720px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .control-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Filter Search Box */
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            padding: 6px 12px 6px 30px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            outline: none;
+            width: 180px;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            width: 220px;
+            box-shadow: 0 0 0 3px rgba(142, 59, 35, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 9px;
+            font-size: 13px;
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        /* Paragraph Selector */
+        .select-para {
+            font-family: var(--font-sans);
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-main);
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Column Toggles */
+        .toggle-chip {
+            font-family: var(--font-sans);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 11px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.18s ease;
+            user-select: none;
+        }
+
+        .toggle-chip.active {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            border-color: var(--badge-text);
+        }
+
+        /* Main Container */
+        main.main-viewport {
+            max-width: 1720px;
+            margin: 24px auto 60px auto;
+            padding: 0 32px;
+        }
+
+        /* Notice / Key Term Diff Banner */
+        .critique-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 10px;
+            padding: 18px 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .critique-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .critique-title {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .critique-body {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 16px;
+        }
+
+        .critique-item {
+            background: var(--bg-toolbar);
+            border-radius: 8px;
+            padding: 14px 16px;
+            border: 1px solid var(--border-subtle);
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        .critique-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .critique-term {
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-family: var(--font-sans);
+        }
+
+        .critique-loc {
+            font-size: 11px;
+            color: var(--text-light);
+            font-family: var(--font-sans);
+        }
+
+        .critique-en {
+            font-family: var(--font-en);
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-style: italic;
+        }
+
+        .critique-diff {
+            color: var(--text-main);
+            margin-top: 6px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 6px;
+        }
+
+        /* The Comparison Grid Container */
+        .compare-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        /* Table Sticky Header for 3 columns */
+        .table-head-row {
+            display: grid;
+            grid-template-columns: var(--grid-template, 1fr 1fr 1fr);
+            background: var(--bg-toolbar);
+            border-bottom: 2px solid var(--border-color);
+            position: sticky;
+            top: var(--cbar-height, 52px);
+            z-index: 40;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: top 0.15s ease;
+        }
+
+        .col-head {
+            padding: 10px 22px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 44px;
+        }
+
+        .col-head:last-child {
+            border-right: none;
+        }
+
+        .col-title {
+            font-family: "Cinzel", var(--font-sans);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--accent-primary);
+        }
+
+        .col-tag {
+            font-size: 11px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: var(--badge-bg);
+            color: var(--badge-text);
+        }
+
+        /* Section Banner Row */
+        .section-banner-row {
+            background: var(--bg-toolbar);
+            border-bottom: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-secondary);
+            padding: 10px 26px;
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--accent-secondary);
+            letter-spacing: 0.4px;
+        }
+
+        /* Comparison Row (分段对照行) */
+        .compare-row {
+            display: grid;
+            grid-template-columns: var(--grid-template, 1fr 1fr 1fr);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            transition: background 0.15s ease;
+            scroll-margin-top: calc(var(--cbar-height, 52px) + var(--thead-height, 44px) + 20px);
+        }
+
+        .compare-row:last-child {
+            border-bottom: none;
+        }
+
+        .compare-row:hover {
+            background: var(--row-hover-bg);
+        }
+
+        .compare-row.row-active {
+            background: var(--row-active-bg);
+            box-shadow: inset 4px 0 0 var(--accent-primary);
+        }
+
+        /* Individual Cell */
+        .compare-cell {
+            padding: 34px 26px 24px 26px;
+            border-right: 1px solid var(--border-subtle);
+            position: relative;
+            line-height: 1.84;
+            hyphens: auto;
+        }
+
+        .compare-cell:last-child {
+            border-right: none;
+        }
+
+        .compare-cell p + p,
+        .compare-cell p + blockquote,
+        .compare-cell blockquote + p {
+            margin-top: 14px;
+        }
+
+        .compare-cell blockquote {
+            background: var(--bg-toolbar);
+            border-left: 3px solid var(--accent-primary);
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.95em;
+            color: var(--text-muted);
+        }
+
+        /* English Column cell specific typography */
+        .cell-en {
+            font-family: var(--font-en);
+            font-size: 1.02em;
+            color: var(--text-main);
+            letter-spacing: 0.01em;
+        }
+
+        /* Old Translation Column */
+        .cell-old {
+            color: var(--text-main);
+        }
+
+        /* New Translation Column */
+        .cell-new {
+            color: var(--text-main);
+            font-weight: 450;
+        }
+
+        /* Row Index Badge */
+        .row-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: var(--bg-toolbar);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            opacity: 0.6;
+            transition: opacity 0.2s, background 0.2s, color 0.2s;
+            pointer-events: none;
+        }
+
+        .compare-row:hover .row-badge,
+        .compare-row.row-active .row-badge {
+            opacity: 1;
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-color: var(--accent-primary);
+        }
+
+        /* Footnote Superscript Pill */
+        .fn-ref {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-secondary);
+            background: rgba(47, 83, 110, 0.1);
+            padding: 1px 5px;
+            margin: 0 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            vertical-align: baseline;
+            position: relative;
+            top: -0.4em;
+            transition: all 0.18s ease;
+            user-select: none;
+            line-height: 1.2;
+            border: 1px solid transparent;
+        }
+
+        .fn-ref:hover {
+            background: var(--accent-secondary);
+            color: #ffffff;
+            border-color: var(--accent-secondary);
+            transform: scale(1.08);
+        }
+
+        /* Floating Tooltip */
+        .fn-tooltip {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            width: max-content;
+            max-width: 320px;
+            box-shadow: var(--shadow-lg);
+            font-size: 12.5px;
+            line-height: 1.55;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .fn-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--bg-card) transparent transparent transparent;
+        }
+
+        .fn-ref:hover .fn-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Footnote Drawer Sidebar */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .footnote-drawer {
+            position: fixed;
+            top: 0;
+            right: -480px;
+            width: 460px;
+            max-width: 90vw;
+            height: 100vh;
+            background: var(--bg-card);
+            border-left: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .footnote-drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-toolbar);
+        }
+
+        .drawer-title {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .drawer-close:hover {
+            color: var(--accent-primary);
+        }
+
+        .drawer-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .drawer-fn-item {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+
+        .drawer-fn-item:last-child {
+            border-bottom: none;
+        }
+
+        .drawer-fn-num {
+            font-weight: 700;
+            color: var(--accent-secondary);
+            font-family: var(--font-sans);
+            margin-bottom: 4px;
+        }
+
+        /* Hidden Column Styles */
+        .col-hidden {
+            display: none !important;
+        }
+
+        /* Search highlights */
+        mark.search-hit {
+            background-color: var(--highlight-bg);
+            color: inherit;
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        footer.site-footer {
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-card);
+            padding: 32px;
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 60px;
+        }
+
+        .footer-links {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .table-head-row, .compare-row {
+                grid-template-columns: 1fr !important;
+            }
+            .col-head, .compare-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+            .cell-en::before {
+                content: "【英文原文】";
+                display: block;
+                font-family: var(--font-sans);
+                font-size: 12px;
+                font-weight: 700;
+                color: var(--accent-primary);
+                margin-bottom: 8px;
+            }
+            .cell-old::before {
+                content: "【旧译本 · {{OLD_TRANSLATOR}}】";
+                display: block;
+                font-family: var(--font-sans);
+                font-size: 12px;
+                font-weight: 700;
+                color: var(--accent-secondary);
+                margin-bottom: 8px;
+            }
+            .cell-new::before {
+                content: "【2026研读新译】";
+                display: block;
+                font-family: var(--font-sans);
+                font-size: 12px;
+                font-weight: 700;
+                color: var(--accent-primary);
+                margin-bottom: 8px;
+            }
+            .table-head-row {
+                display: none;
+            }
+            .control-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body data-theme="parchment">
+<!-- Header -->
+<header class="site-header">
+<div class="header-top">
+<div class="title-group">
+<h1>{{TITLE_EN_UPPER}} <span class="subtag">三栏逐段对照研读本</span></h1>
+<div class="title-meta">
+<span><strong>作者：</strong>{{AUTHOR}}（{{OCCASION}}）</span>
+<span class="divider">/</span>
+<span><strong>篇名：</strong>《{{TITLE_NEW_ZH}}》（旧译《{{TITLE_OLD_ZH}}》）</span>
+<span class="divider">/</span>
+<span><strong>版本对照：</strong>英文原稿 · {{OLD_TRANSLATOR}}旧译({{OLD_YEAR}}) · 2026精研新译</span>
+</div>
+</div>
+<div class="header-actions">
+<a class="action-btn" href="index.html" title="返回《荣耀之重》精译书目总览">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+<span>书目总览</span>
+</a>
+<button class="action-btn" id="btn-toggle-critique" title="查看新旧译本核心差异考据">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+<span>译文考据与对勘 ({{CRITIQUE_COUNT}}处要点)</span>
+</button>
+<button class="action-btn" id="btn-open-footnotes" title="查看学术注记">
+<svg fill="none" height="15" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="16" y2="12"></line><line x1="12" x2="12.01" y1="8" y2="8"></line></svg>
+<span>学术译注大全 ({{FOOTNOTE_COUNT}}条)</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Sticky Control Bar -->
+<div class="control-bar">
+<div class="control-container">
+<!-- Left: Jump & Columns -->
+<div class="control-group">
+<span class="control-label">定位段落</span>
+<select class="select-para" id="select-para">
+<option value="">快速跳转至段落 (#01 ~ #{{PARA_COUNT_PAD}})...</option>
+{{PARA_OPTIONS_HTML}}
+</select>
+<span class="control-label" style="margin-left: 8px;">显示栏目</span>
+<button class="toggle-chip active" data-col="en" id="toggle-col-en">英文原文</button>
+<button class="toggle-chip active" data-col="old" id="toggle-col-old">{{OLD_TRANSLATOR}}旧译</button>
+<button class="toggle-chip active" data-col="new" id="toggle-col-new">2026研读新译</button>
+</div>
+<!-- Right: Search, Font size, Theme -->
+<div class="control-group">
+<div class="search-box">
+<span class="search-icon">🔍</span>
+<input class="search-input" id="search-input" placeholder="在全文中检索词句..." type="text"/>
+</div>
+<span class="control-label" style="margin-left: 8px;">字号</span>
+<button class="action-btn" id="btn-font-dec" title="缩小字号">A-</button>
+<button class="action-btn" id="btn-font-inc" title="放大字号">A+</button>
+<span class="control-label" style="margin-left: 8px;">主题</span>
+<button class="action-btn active" data-theme-val="parchment" title="羊皮纸米黄">书卷</button>
+<button class="action-btn" data-theme-val="light" title="现代简约白">明亮</button>
+<button class="action-btn" data-theme-val="dark" title="夜间深色">深邃</button>
+<button class="action-btn" data-theme-val="sepia" title="复古暖褐">复古</button>
+</div>
+</div>
+</div>
+<!-- Main Viewport -->
+<main class="main-viewport">
+<!-- Translation Critique & Comparative Analysis Banner -->
+<section class="critique-card" id="critique-section">
+<div class="critique-header" id="critique-header-toggle">
+<div class="critique-title">
+<svg fill="none" height="18" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" width="18"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+<span>译本对勘导读：新旧译本关键概念与核心订误解析 (点击折叠/展开)</span>
+</div>
+<span id="critique-toggle-icon" style="font-size: 13px; color: var(--text-muted);">▲ 收起</span>
+</div>
+<div class="critique-body" id="critique-body-content">
+{{CRITIQUES_HTML}}
+</div>
+</section>
+<!-- Comparison Box Container -->
+<div class="compare-box" id="compare-container">
+<!-- Table Sticky Header -->
+<div class="table-head-row" id="table-head">
+<div class="col-head col-en-cell">
+<span class="col-title">ENGLISH ORIGINAL</span>
+<span class="col-tag">{{YEAR}} 原稿</span>
+</div>
+<div class="col-head col-old-cell">
+<span class="col-title">旧译本（{{TITLE_OLD_ZH}}）</span>
+<span class="col-tag">{{OLD_TRANSLATOR}} 译</span>
+</div>
+<div class="col-head col-new-cell">
+<span class="col-title">2026 研读新译本</span>
+<span class="col-tag">精研新译</span>
+</div>
+</div>
+<!-- Paragraph-by-Paragraph Rows -->
+{{PARAGRAPHS_HTML}}
+</div>
+</main>
+<!-- Footnotes Slide-in Drawer -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<aside class="footnote-drawer" id="footnote-drawer">
+<div class="drawer-header">
+<div class="drawer-title">文献与历史考注 (共 {{FOOTNOTE_COUNT}} 条)</div>
+<button class="drawer-close" id="drawer-close-btn" title="关闭抽屉">×</button>
+</div>
+<div class="drawer-body" id="drawer-body">
+{{FOOTNOTES_DRAWER_HTML}}
+</div>
+</aside>
+<!-- Footer -->
+<footer class="site-footer">
+<p><strong>{{AUTHOR}}《{{TITLE_NEW_ZH}}》（{{TITLE_EN}}）三栏逐段对照研读本</strong></p>
+<p style="margin-top: 6px; color: var(--text-light);">
+            英文底本取自 {{EN_SOURCE}} ｜ 中文旧译本取自 {{OLD_SOURCE}} ｜ 2026 研读新译
+        </p>
+<div class="footer-links">
+<a href="index.html">书目总览</a>
+<span>·</span>
+<a href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">返回顶部</a>
+<span>·</span>
+<a href="javascript:void(0)" onclick="document.getElementById('critique-section').scrollIntoView({behavior:'smooth'})">对勘要点</a>
+<span>·</span>
+<a href="javascript:void(0)" id="footer-fn-trigger">学术译注大全</a>
+</div>
+</footer>
+<!-- Interactive JavaScript -->
+<script>
+        const footnotesData = {{FOOTNOTES_JSON}};
+
+        // 1. Footnote Tooltip Generation & Delegated Drawer Linking
+        function initFootnoteTooltips(root = document) {
+            root.querySelectorAll('.fn-ref').forEach(el => {
+                if (el.querySelector('.fn-tooltip')) return;
+                const fnId = el.getAttribute('data-fn');
+                if (footnotesData[fnId]) {
+                    const tooltip = document.createElement('span');
+                    tooltip.className = 'fn-tooltip';
+                    let shortText = footnotesData[fnId];
+                    if (shortText.length > 140) {
+                        shortText = shortText.substring(0, 140) + '... (点击查看完整注记)';
+                    }
+                    tooltip.textContent = `注[${fnId}]: ` + shortText;
+                    el.appendChild(tooltip);
+                }
+            });
+        }
+        initFootnoteTooltips();
+
+        document.addEventListener('click', (e) => {
+            const fnEl = e.target.closest('.fn-ref');
+            if (fnEl) {
+                e.stopPropagation();
+                openFootnotesDrawer(fnEl.getAttribute('data-fn'));
+            }
+        });
+
+        // 2. Footnotes Drawer Functionality
+        const drawer = document.getElementById('footnote-drawer');
+        const overlay = document.getElementById('drawer-overlay');
+        const closeBtn = document.getElementById('drawer-close-btn');
+
+        function openFootnotesDrawer(targetFnId = null) {
+            drawer.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            if (targetFnId) {
+                const item = document.getElementById('drawer-fn-' + targetFnId);
+                if (item) {
+                    setTimeout(() => {
+                        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        item.style.backgroundColor = 'var(--row-active-bg)';
+                        item.style.borderRadius = '6px';
+                        item.style.padding = '8px';
+                        setTimeout(() => {
+                            item.style.backgroundColor = 'transparent';
+                        }, 2000);
+                    }, 250);
+                }
+            }
+        }
+
+        function closeFootnotesDrawer() {
+            drawer.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('btn-open-footnotes').addEventListener('click', () => openFootnotesDrawer());
+        document.getElementById('footer-fn-trigger').addEventListener('click', () => openFootnotesDrawer());
+        closeBtn.addEventListener('click', closeFootnotesDrawer);
+        overlay.addEventListener('click', closeFootnotesDrawer);
+
+        // 3. Row Hover and Click Highlight
+        const rows = document.querySelectorAll('.compare-row');
+        rows.forEach(r => {
+            r.addEventListener('click', () => {
+                rows.forEach(x => x.classList.remove('row-active'));
+                r.classList.add('row-active');
+            });
+        });
+
+        // Dynamic Sticky Header Synchronization
+        function updateStickyPositions() {
+            const cbar = document.querySelector('.control-bar');
+            const thead = document.querySelector('.table-head-row');
+            if (cbar) {
+                const cbarHeight = cbar.offsetHeight;
+                document.documentElement.style.setProperty('--cbar-height', cbarHeight + 'px');
+            }
+            if (thead) {
+                const theadHeight = thead.offsetHeight;
+                document.documentElement.style.setProperty('--thead-height', theadHeight + 'px');
+            }
+        }
+
+        window.addEventListener('resize', updateStickyPositions);
+        window.addEventListener('DOMContentLoaded', updateStickyPositions);
+        updateStickyPositions();
+
+        // 4. Paragraph Quick Jump with Accurate Scroll Offset
+        function scrollToRow(rowId) {
+            const target = document.getElementById(rowId);
+            if (!target) return;
+            const cbar = document.querySelector('.control-bar');
+            const thead = document.querySelector('.table-head-row');
+            const stickyOffset = (cbar ? cbar.offsetHeight : 0) + (thead ? thead.offsetHeight : 0) + 16;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - stickyOffset;
+            
+            window.scrollTo({
+                top: Math.max(0, offsetPosition),
+                behavior: 'smooth'
+            });
+
+            rows.forEach(x => x.classList.remove('row-active'));
+            target.classList.add('row-active');
+        }
+
+        const selectPara = document.getElementById('select-para');
+        selectPara.addEventListener('change', (e) => {
+            const rowId = e.target.value;
+            if (rowId) {
+                scrollToRow(rowId);
+            }
+        });
+
+        // 5. Column Visibility Toggles
+        const colBtns = document.querySelectorAll('.toggle-chip[data-col]');
+        function updateColumnLayout() {
+            const activeCols = Array.from(colBtns).filter(b => b.classList.contains('active')).map(b => b.getAttribute('data-col'));
+            ['en', 'old', 'new'].forEach(col => {
+                const cells = document.querySelectorAll(`.col-${col}-cell`);
+                const show = activeCols.includes(col);
+                cells.forEach(c => c.classList.toggle('col-hidden', !show));
+            });
+            const colTemplate = activeCols.map(() => '1fr').join(' ') || '1fr';
+            document.documentElement.style.setProperty('--grid-template', colTemplate);
+            updateStickyPositions();
+        }
+        colBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const activeCount = Array.from(colBtns).filter(b => b.classList.contains('active')).length;
+                if (btn.classList.contains('active') && activeCount <= 1) return;
+                btn.classList.toggle('active');
+                updateColumnLayout();
+            });
+        });
+
+        // 6. Theme Switching
+        const themeBtns = document.querySelectorAll('[data-theme-val]');
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.getAttribute('data-theme-val');
+                document.body.setAttribute('data-theme', theme);
+                themeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // 7. Font Size Adjustments
+        let baseSize = 16;
+        document.getElementById('btn-font-inc').addEventListener('click', () => {
+            if (baseSize < 22) {
+                baseSize += 1;
+                document.documentElement.style.setProperty('--base-font-size', baseSize + 'px');
+            }
+        });
+        document.getElementById('btn-font-dec').addEventListener('click', () => {
+            if (baseSize > 13) {
+                baseSize -= 1;
+                document.documentElement.style.setProperty('--base-font-size', baseSize + 'px');
+            }
+        });
+
+        // 8. Safe DOM Text-Node Search & Highlight Filter
+        const searchInput = document.getElementById('search-input');
+        let rawParagraphs = [];
+
+        document.querySelectorAll('.compare-cell p, .compare-cell blockquote').forEach(p => {
+            rawParagraphs.push({ el: p, originalHTML: p.innerHTML });
+        });
+
+        function highlightTextNodes(element, regex) {
+            const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    if (node.parentElement && node.parentElement.closest('.fn-tooltip, .fn-ref')) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            });
+            const textNodes = [];
+            while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+            textNodes.forEach(node => {
+                const val = node.nodeValue;
+                if (!regex.test(val)) return;
+                regex.lastIndex = 0;
+                const frag = document.createDocumentFragment();
+                let lastIdx = 0;
+                let match;
+                while ((match = regex.exec(val)) !== null) {
+                    if (match.index > lastIdx) {
+                        frag.appendChild(document.createTextNode(val.slice(lastIdx, match.index)));
+                    }
+                    const mark = document.createElement('mark');
+                    mark.className = 'search-hit';
+                    mark.textContent = match[0];
+                    frag.appendChild(mark);
+                    lastIdx = regex.lastIndex;
+                }
+                if (lastIdx < val.length) {
+                    frag.appendChild(document.createTextNode(val.slice(lastIdx)));
+                }
+                node.parentNode.replaceChild(frag, node);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            rawParagraphs.forEach(item => {
+                item.el.innerHTML = item.originalHTML;
+            });
+            initFootnoteTooltips();
+            if (!val) return;
+            const regex = new RegExp(`(${val.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            rawParagraphs.forEach(item => {
+                highlightTextNodes(item.el, regex);
+            });
+        });
+
+        // 9. Critique Section Toggle
+        const critiqueHeader = document.getElementById('critique-header-toggle');
+        const critiqueBody = document.getElementById('critique-body-content');
+        const critiqueIcon = document.getElementById('critique-toggle-icon');
+        let critiqueExpanded = true;
+
+        critiqueHeader.addEventListener('click', () => {
+            critiqueExpanded = !critiqueExpanded;
+            if (critiqueExpanded) {
+                critiqueBody.style.display = 'grid';
+                critiqueIcon.textContent = '▲ 收起';
+            } else {
+                critiqueBody.style.display = 'none';
+                critiqueIcon.textContent = '▼ 展开';
+            }
+        });
+
+        document.getElementById('btn-toggle-critique').addEventListener('click', () => {
+            document.getElementById('critique-section').scrollIntoView({ behavior: 'smooth' });
+            if (!critiqueExpanded) {
+                critiqueBody.style.display = 'grid';
+                critiqueIcon.textContent = '▲ 收起';
+                critiqueExpanded = true;
+            }
+        });
+    </script>
+</body>
+</html>
