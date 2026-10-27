@@ -6,337 +6,414 @@
 <title>经典神学与哲学重译研读馆 · Classic Translations</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;family=Noto+Serif+SC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
         :root {
-            --bg-body: #f7f4ed;
-            --bg-card: #ffffff;
-            --bg-toolbar: #f0ebe1;
-            --text-main: #2b2621;
-            --text-muted: #6e655c;
-            --text-light: #9a8f82;
-            --border-color: #e5ded3;
-            --border-subtle: #eee7dc;
-            --accent-primary: #8e3b23;
-            --accent-secondary: #2f536e;
-            --badge-bg: #eedfcc;
-            --badge-text: #733c1d;
-            --shadow-sm: 0 2px 8px rgba(43, 38, 33, 0.05);
-            --shadow-md: 0 6px 20px rgba(43, 38, 33, 0.08);
+            --bg-page: #FAF8F5;
+            --bg-surface: #FFFFFF;
+            --bg-toolbar: #F5F1E8;
+            --text-primary: #1C1917;
+            --text-secondary: #57534E;
+            --text-tertiary: #8C827A;
+            --border-line: #E7E2D8;
+            --border-subtle: #F0ECE4;
+            --accent: #78241C;
+            --accent-hover: #5A1B15;
+            --accent-soft: #F4EBEA;
+            --accent-sec: #1B2E4B;
             --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, Georgia, serif;
             --font-en: "Lora", Georgia, "Times New Roman", serif;
+            --font-caps: "Cinzel", Georgia, serif;
             --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
         }
 
         [data-theme="light"] {
-            --bg-body: #f8fafc;
-            --bg-card: #ffffff;
-            --bg-toolbar: #f1f5f9;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --text-light: #94a3b8;
-            --border-color: #e2e8f0;
-            --border-subtle: #f1f5f9;
-            --accent-primary: #1e40af;
-            --accent-secondary: #0f766e;
-            --badge-bg: #dbeafe;
-            --badge-text: #1e40af;
+            --bg-page: #F8FAFC;
+            --bg-surface: #FFFFFF;
+            --bg-toolbar: #F1F5F9;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-tertiary: #94A3B8;
+            --border-line: #E2E8F0;
+            --border-subtle: #F1F5F9;
+            --accent: #1B2E4B;
+            --accent-hover: #0F1D33;
+            --accent-soft: #E2E8F0;
+            --accent-sec: #0F766E;
         }
 
         [data-theme="dark"] {
-            --bg-body: #121316;
-            --bg-card: #1a1b1f;
-            --bg-toolbar: #222328;
-            --text-main: #e2e4e9;
-            --text-muted: #9ba1ad;
-            --text-light: #6c7280;
-            --border-color: #2b2e36;
-            --border-subtle: #24262d;
-            --accent-primary: #d97745;
-            --accent-secondary: #4ea8de;
-            --badge-bg: #382c23;
-            --badge-text: #f3a072;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4);
+            --bg-page: #131416;
+            --bg-surface: #1B1C20;
+            --bg-toolbar: #22242A;
+            --text-primary: #EDEBE8;
+            --text-secondary: #A39E96;
+            --text-tertiary: #6E6961;
+            --border-line: #2D2E35;
+            --border-subtle: #24252B;
+            --accent: #D47B53;
+            --accent-hover: #E08C65;
+            --accent-soft: #38261E;
+            --accent-sec: #5AA9D6;
         }
 
         [data-theme="sepia"] {
-            --bg-body: #ebdcc3;
-            --bg-card: #f5ebda;
-            --bg-toolbar: #dfceb2;
-            --text-main: #362819;
-            --text-muted: #68543f;
-            --text-light: #8c755c;
-            --border-color: #d8c2a3;
-            --border-subtle: #e2d2b9;
-            --accent-primary: #7d2e1b;
-            --accent-secondary: #3f6055;
-            --badge-bg: #debfa0;
-            --badge-text: #592314;
+            --bg-page: #F2EADB;
+            --bg-surface: #FAF4EB;
+            --bg-toolbar: #E8DDCA;
+            --text-primary: #332619;
+            --text-secondary: #63503D;
+            --text-tertiary: #8F7A64;
+            --border-line: #DBCBB4;
+            --border-subtle: #E8DDCA;
+            --accent: #6E2214;
+            --accent-hover: #52180D;
+            --accent-soft: #DFCFB9;
+            --accent-sec: #304E44;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: var(--font-serif);
-            color: var(--text-main);
-            background: var(--bg-body);
+            color: var(--text-primary);
+            background: var(--bg-page);
             line-height: 1.75;
             transition: background 0.25s ease, color 0.25s ease;
+            -webkit-font-smoothing: antialiased;
         }
 
         header.site-header {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            padding: 36px 32px 28px;
-            box-shadow: var(--shadow-sm);
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-line);
+            padding: 40px 32px 32px;
         }
 
         .header-inner {
-            max-width: 1280px;
+            max-width: 1120px;
             margin: 0 auto;
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
         }
 
         .brand h1 {
-            font-family: "Cinzel", var(--font-serif);
-            font-size: 28px;
-            color: var(--accent-primary);
-            letter-spacing: 0.5px;
+            font-family: var(--font-caps);
+            font-size: 26px;
+            color: var(--text-primary);
+            letter-spacing: 1.2px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
+            line-height: 1.2;
         }
 
         .brand h1 .subtag {
             font-family: var(--font-sans);
-            font-size: 13px;
-            padding: 3px 11px;
-            border-radius: 999px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 3px 9px;
+            border-radius: 2px;
+            border: 1px solid var(--border-line);
+            background: var(--bg-toolbar);
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
         }
 
         .brand p {
-            margin-top: 8px;
+            margin-top: 10px;
             font-family: var(--font-sans);
             font-size: 14px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         .theme-bar {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             font-family: var(--font-sans);
         }
 
         .action-btn {
             font-family: var(--font-sans);
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 500;
-            padding: 6px 13px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-toolbar);
-            color: var(--text-main);
+            padding: 5px 12px;
+            border-radius: 2px;
+            border: 1px solid var(--border-line);
+            background: var(--bg-surface);
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
         }
 
         .action-btn.active, .action-btn:hover {
-            background: var(--accent-primary);
+            background: var(--accent);
             color: #ffffff;
-            border-color: var(--accent-primary);
+            border-color: var(--accent);
         }
 
         main.container {
-            max-width: 1280px;
-            margin: 36px auto 80px;
+            max-width: 1120px;
+            margin: 48px auto 90px;
             padding: 0 32px;
         }
 
         .section-heading {
             font-family: var(--font-sans);
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
-            color: var(--accent-primary);
-            margin-bottom: 18px;
+            color: var(--text-primary);
+            margin-bottom: 24px;
             display: flex;
-            align-items: center;
+            align-items: baseline;
             justify-content: space-between;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 12px;
+            letter-spacing: 0.5px;
         }
 
-        .cards-grid {
+        .section-heading .subtitle {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-tertiary);
+        }
+
+        /* 方案 A：双栏典籍名册列表 */
+        .articles-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+
+        .article-entry {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-line);
+            border-radius: 2px;
+            padding: 34px 38px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
-            gap: 24px;
-            margin-bottom: 48px;
+            grid-template-columns: 140px 1fr;
+            gap: 32px;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        @media (max-width: 640px) {
-            .cards-grid { grid-template-columns: 1fr; }
+        .article-entry:hover {
+            border-color: #D3CBBE;
+            box-shadow: 0 4px 20px rgba(28, 25, 23, 0.04);
         }
 
-        .article-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-top: 4px solid var(--accent-primary);
-            border-radius: 12px;
-            padding: 26px 28px;
-            box-shadow: var(--shadow-md);
+        .entry-sidebar {
+            border-right: 1px solid var(--border-line);
+            padding-right: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .article-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .card-meta-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: var(--font-sans);
-            font-size: 12.5px;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .chapter-badge {
-            background: var(--badge-bg);
-            color: var(--badge-text);
+        .chapter-roman {
+            font-family: var(--font-caps);
+            font-size: 20px;
             font-weight: 700;
-            padding: 2px 9px;
-            border-radius: 4px;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
         }
 
-        .card-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .card-title-en {
-            font-family: "Cinzel", var(--font-en);
-            font-size: 15px;
-            color: var(--accent-primary);
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .card-desc {
-            font-family: var(--font-sans);
-            font-size: 13.5px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .stats-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            font-family: var(--font-sans);
+        .chapter-sub {
             font-size: 12px;
+            color: var(--text-tertiary);
+            margin-top: 6px;
+            font-family: var(--font-sans);
         }
 
-        .stat-pill {
-            background: var(--bg-toolbar);
-            border: 1px solid var(--border-subtle);
-            padding: 4px 10px;
-            border-radius: 6px;
-            color: var(--text-muted);
+        .year-mark {
+            font-family: var(--font-en);
+            font-style: italic;
+            font-size: 14px;
+            color: var(--text-tertiary);
         }
 
-        .card-actions {
+        .entry-content {
             display: flex;
+            flex-direction: column;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: baseline;
             gap: 12px;
             flex-wrap: wrap;
-            border-top: 1px solid var(--border-subtle);
-            padding-top: 16px;
+            margin-bottom: 6px;
         }
 
-        .btn-primary {
-            font-family: var(--font-sans);
-            font-size: 13.5px;
+        .main-title {
+            font-size: 24px;
             font-weight: 600;
-            padding: 9px 18px;
-            border-radius: 8px;
-            background: var(--accent-primary);
-            color: #ffffff;
-            text-decoration: none;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .old-title {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            font-weight: 400;
+        }
+
+        .english-title {
+            font-family: var(--font-caps);
+            font-size: 13.5px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .occasion-desc {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .meta-specs {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12.5px;
+            color: var(--text-tertiary);
+            font-family: var(--font-sans);
+            padding: 12px 0;
+            border-top: 1px dashed var(--border-line);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-specs span.dot {
+            opacity: 0.4;
+        }
+
+        .entry-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-read-primary {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s;
+            gap: 8px;
+            background: var(--accent);
+            color: #FFFFFF;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 13.5px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 2px;
+            transition: background 0.15s;
         }
 
-        .btn-primary:hover {
-            opacity: 0.9;
+        .btn-read-primary:hover {
+            background: var(--accent-hover);
         }
 
+        .btn-link-sec {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 2px;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .btn-link-sec:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .article-entry {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 24px;
+            }
+            .entry-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border-line);
+                padding-right: 0;
+                padding-bottom: 14px;
+                flex-direction: row;
+                align-items: baseline;
+            }
+        }
+
+        /* 古典藏书目总览表格 */
         .toc-table {
             width: 100%;
             border-collapse: collapse;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            overflow: hidden;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-line);
+            border-radius: 2px;
             font-family: var(--font-sans);
-            font-size: 14px;
-            box-shadow: var(--shadow-sm);
+            font-size: 13.5px;
         }
 
         .toc-table th, .toc-table td {
-            padding: 12px 18px;
+            padding: 13px 18px;
             text-align: left;
             border-bottom: 1px solid var(--border-subtle);
         }
 
         .toc-table th {
             background: var(--bg-toolbar);
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12.5px;
+            letter-spacing: 0.5px;
         }
 
         .toc-table tr:last-child td { border-bottom: none; }
+
+        .toc-table tr:hover td {
+            background: var(--bg-page);
+        }
+
         .status-done {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            font-size: 12px;
+            font-family: var(--font-sans);
+            color: var(--accent);
+            font-size: 12.5px;
             font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
         }
+
+        .status-done:hover {
+            border-bottom-color: var(--accent);
+        }
+
         .status-pending {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: var(--bg-toolbar);
-            color: var(--text-light);
-            font-size: 12px;
+            font-family: var(--font-sans);
+            color: var(--text-tertiary);
+            font-size: 12.5px;
         }
 
         footer {
             text-align: center;
-            padding: 28px;
+            padding: 36px 32px;
             font-family: var(--font-sans);
             font-size: 13px;
-            color: var(--text-light);
-            border-top: 1px solid var(--border-color);
-            background: var(--bg-card);
+            color: var(--text-tertiary);
+            border-top: 1px solid var(--border-line);
+            background: var(--bg-surface);
         }
     </style>
 </head>
@@ -345,7 +422,7 @@
     <div class="header-inner">
         <div class="brand">
             <h1>CLASSIC TRANSLATIONS <span class="subtag">三栏逐段对勘研读馆</span></h1>
-            <p>C. S. 路易斯《荣耀之重：暨其他演讲》（The Weight of Glory and Other Addresses）英文原稿 · 旧译本 · 2026精研新译</p>
+            <p>C. S. 路易斯《荣耀之重：暨其他演讲》（The Weight of Glory and Other Addresses）英文原稿 · 旧译本 · 2026 精研新译</p>
         </div>
         <div class="theme-bar">
             <button class="action-btn active" data-theme-val="parchment">书卷</button>
@@ -359,16 +436,16 @@
 <main class="container">
     <div class="section-heading">
         <span>已发布精研译本（{{ARTICLE_COUNT}} 篇）</span>
-        <span style="font-size: 13px; font-weight: 400; color: var(--text-muted);">圣经引文统一采用中文和合本（神版）｜ 支持单文件离线传阅</span>
+        <span class="subtitle">圣经引文统一采用中文和合本（神版）｜ 支持单文件离线研读传阅</span>
     </div>
 
-    <div class="cards-grid">
+    <div class="articles-list">
         {{CARDS_HTML}}
     </div>
 
     <div class="section-heading">
         <span>《荣耀之重：暨其他演讲》全书九篇书目与进度总览</span>
-        <span style="font-size: 13px; font-weight: 400; color: var(--text-muted);">底本已归档于 sources/荣耀之重_CS路易斯.epub</span>
+        <span class="subtitle">底本已归档于 sources/荣耀之重_CS路易斯.epub</span>
     </div>
 
     <table class="toc-table">
@@ -429,7 +506,7 @@
                 <td><strong>核心圈</strong></td>
                 <td>六 话圈内</td>
                 <td><code>Section0014-0015</code></td>
-                <td><a href="the-inner-ring.html" class="status-done" style="text-decoration:none;">✓ 已完成 · 点击阅读 →</a></td>
+                <td><a href="the-inner-ring.html" class="status-done">✓ 已完成 · 点击阅读 →</a></td>
             </tr>
             <tr>
                 <td>第七篇</td>
@@ -437,7 +514,7 @@
                 <td><strong>互为肢体</strong></td>
                 <td>七 和而不同</td>
                 <td><code>Section0016-0017</code></td>
-                <td><a href="membership.html" class="status-done" style="text-decoration:none;">✓ 已完成 · 点击阅读 →</a></td>
+                <td><a href="membership.html" class="status-done">✓ 已完成 · 点击阅读 →</a></td>
             </tr>
             <tr>
                 <td>第八篇</td>
@@ -460,7 +537,7 @@
 </main>
 
 <footer>
-    Classic Translations · 三栏逐段对勘与重译项目（由 <code>build.py</code> 自动构建生成）
+    Classic Translations · 经典神学与哲学重译研读馆（由 <code>build.py</code> 自动构建生成）
 </footer>
 
 <script>

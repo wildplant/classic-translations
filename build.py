@@ -160,6 +160,19 @@ def export_markdown_files(article_dir: Path, data: dict) -> None:
     (dist_article_dir / "en.md").write_text("\n".join(en_lines), encoding="utf-8")
 
 
+ZH_TO_ROMAN = {
+    "第一篇": "PART I",
+    "第二篇": "PART II",
+    "第三篇": "PART III",
+    "第四篇": "PART IV",
+    "第五篇": "PART V",
+    "第六篇": "PART VI",
+    "第七篇": "PART VII",
+    "第八篇": "PART VIII",
+    "第九篇": "PART IX",
+}
+
+
 def build_article_html(reader_tpl: str, data: dict) -> str:
     """根据模板与单篇 data.json 渲染独立的单文件三栏对照 HTML。"""
     # 1. 段落跳转选项與三栏行
@@ -188,17 +201,17 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
         row_block = f"""<article class="compare-row" data-row="{num}" id="row-{num}">
 <!-- English -->
 <div class="compare-cell cell-en col-en-cell">
-<span class="row-badge">#{num_pad}</span>
+<span class="row-badge">§ {num_pad}</span>
 {en_html}
 </div>
 <!-- Old Translation -->
 <div class="compare-cell cell-old col-old-cell">
-<span class="row-badge">#{num_pad}</span>
+<span class="row-badge">§ {num_pad}</span>
 {old_html}
 </div>
 <!-- New Translation -->
 <div class="compare-cell cell-new col-new-cell">
-<span class="row-badge">#{num_pad}</span>
+<span class="row-badge">§ {num_pad}</span>
 {new_html}
 </div>
 </article>"""
@@ -261,34 +274,44 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
 
 def build_index_html(index_tpl: str, articles: list[dict]) -> str:
     """生成书目总览主页 dist/index.html。"""
-    cards = []
+    entries = []
     for data in articles:
         crit_terms = " · ".join(c["term"].split("/")[0].strip() for c in data.get("critiques", [])[:4])
-        cards.append(
-            f"""<article class="article-card">
-    <div>
-        <div class="card-meta-top">
-            <span class="chapter-badge">《荣耀之重》{html.escape(data.get('book_chapter', ''))}</span>
-            <span>{html.escape(data['year'])} 年演讲</span>
+        chapter_str = data.get("book_chapter", "")
+        roman_chapter = ZH_TO_ROMAN.get(chapter_str, "PART")
+        entries.append(
+            f"""<article class="article-entry">
+    <div class="entry-sidebar">
+        <div>
+            <div class="chapter-roman">{roman_chapter}</div>
+            <div class="chapter-sub">《荣耀之重》{html.escape(chapter_str)}</div>
         </div>
-        <div class="card-title">《{html.escape(data['title_new_zh'])}》<span style="font-size:15px; font-weight:400; color:var(--text-muted);">（旧译：《{html.escape(data['title_old_zh'])}》）</span></div>
-        <div class="card-title-en">{html.escape(data['title_en'])} — {html.escape(data['author'])}</div>
-        <p class="card-desc">{html.escape(data['occasion'])}。核心对勘词条：{html.escape(crit_terms)} 等。</p>
-        <div class="stats-row">
-            <span class="stat-pill">📄 {len(data['paragraphs'])} 个自然段逐段对齐</span>
-            <span class="stat-pill">🔍 {len(data.get('critiques', []))} 处译本对勘导读</span>
-            <span class="stat-pill">📚 {len(data.get('footnotes', {}))} 条文献与历史考注</span>
-        </div>
+        <div class="year-mark">Anno {html.escape(data['year'])}</div>
     </div>
-    <div class="card-actions">
-        <a class="btn-primary" href="{data['slug']}.html">进入三栏精研对照本 →</a>
-        <a class="action-btn" href="articles/{data['id']}/new-zh.md" style="text-decoration:none;">查看 2026 纯净新译 (.md)</a>
+    <div class="entry-content">
+        <div class="title-row">
+            <h2 class="main-title">{html.escape(data['title_new_zh'])}</h2>
+            <span class="old-title">旧译：《{html.escape(data['title_old_zh'])}》</span>
+        </div>
+        <div class="english-title">{html.escape(data['title_en'].upper())} — {html.escape(data['author'].upper())}</div>
+        <p class="occasion-desc">{html.escape(data['occasion'])}。核心对勘词条：{html.escape(crit_terms)} 等。</p>
+        <div class="meta-specs">
+            <span>{len(data['paragraphs'])} 个自然段逐段对齐</span>
+            <span class="dot">/</span>
+            <span>{len(data.get('critiques', []))} 处核心对勘导读</span>
+            <span class="dot">/</span>
+            <span>{len(data.get('footnotes', {}))} 条文献与思想史考注</span>
+        </div>
+        <div class="entry-actions">
+            <a class="btn-read-primary" href="{data['slug']}.html">进入三栏精研对照本 →</a>
+            <a class="btn-link-sec" href="articles/{data['id']}/new-zh.md">查看 2026 纯净新译 (.md)</a>
+        </div>
     </div>
 </article>"""
         )
 
     out = index_tpl.replace("{{ARTICLE_COUNT}}", str(len(articles)))
-    out = out.replace("{{CARDS_HTML}}", "\n".join(cards))
+    out = out.replace("{{CARDS_HTML}}", "\n".join(entries))
     return out
 
 
