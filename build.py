@@ -152,6 +152,13 @@ def export_markdown_files(article_dir: Path, data: dict) -> None:
 
     (article_dir / "en.md").write_text("\n".join(en_lines), encoding="utf-8")
 
+    # 同步输出到 dist/ 供静态网页直接访问和下载
+    dist_article_dir = DIST_DIR / "articles" / data["id"]
+    dist_article_dir.mkdir(parents=True, exist_ok=True)
+    (dist_article_dir / "new-zh.md").write_text("\n".join(new_lines), encoding="utf-8")
+    (dist_article_dir / "old-zh.md").write_text("\n".join(old_lines), encoding="utf-8")
+    (dist_article_dir / "en.md").write_text("\n".join(en_lines), encoding="utf-8")
+
 
 def build_article_html(reader_tpl: str, data: dict) -> str:
     """根据模板与单篇 data.json 渲染独立的单文件三栏对照 HTML。"""
@@ -275,7 +282,7 @@ def build_index_html(index_tpl: str, articles: list[dict]) -> str:
     </div>
     <div class="card-actions">
         <a class="btn-primary" href="{data['slug']}.html">进入三栏精研对照本 →</a>
-        <a class="action-btn" href="../articles/{data['id']}/new-zh.md" style="text-decoration:none;">查看 2026 纯净新译 (.md)</a>
+        <a class="action-btn" href="articles/{data['id']}/new-zh.md" style="text-decoration:none;">查看 2026 纯净新译 (.md)</a>
     </div>
 </article>"""
         )
