@@ -531,8 +531,9 @@
             color: var(--text-main);
         }
 
-        /* New Translation Column */
-        .cell-new {
+        /* New & Fluent Translation Columns */
+        .cell-new,
+        .cell-fluent {
             color: var(--text-main);
             font-weight: 450;
         }
@@ -780,32 +781,29 @@
                 border-right: none;
                 border-bottom: 1px solid var(--border-subtle);
             }
-            .cell-en::before {
-                content: "【英文原文】";
+            .cell-en::before,
+            .cell-old::before,
+            .cell-new::before,
+            .cell-fluent::before {
                 display: block;
                 font-family: var(--font-sans);
                 font-size: 12px;
                 font-weight: 700;
                 color: var(--accent-primary);
                 margin-bottom: 8px;
+            }
+            .cell-en::before {
+                content: "【英文原文】";
             }
             .cell-old::before {
                 content: "【旧译本 · {{OLD_TRANSLATOR}}】";
-                display: block;
-                font-family: var(--font-sans);
-                font-size: 12px;
-                font-weight: 700;
                 color: var(--accent-secondary);
-                margin-bottom: 8px;
             }
             .cell-new::before {
                 content: "【2026研读新译】";
-                display: block;
-                font-family: var(--font-sans);
-                font-size: 12px;
-                font-weight: 700;
-                color: var(--accent-primary);
-                margin-bottom: 8px;
+            }
+            .cell-fluent::before {
+                content: "【2026畅读译本】";
             }
             .table-head-row {
                 display: none;

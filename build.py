@@ -232,7 +232,7 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
             fluent_html = render_cell_blocks(p.get("fluent_zh", p["new_zh"]))
             fluent_cell = f"""
 <!-- Fluent Translation -->
-<div class="compare-cell cell-new col-fluent-cell">
+<div class="compare-cell cell-fluent col-fluent-cell">
 <span class="row-badge">§ {num_pad}</span>
 {fluent_html}
 </div>"""
