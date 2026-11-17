@@ -861,6 +861,7 @@
 <button class="toggle-chip active" data-col="en" id="toggle-col-en">英文原文</button>
 <button class="toggle-chip active" data-col="old" id="toggle-col-old">{{OLD_TRANSLATOR}}旧译</button>
 <button class="toggle-chip active" data-col="new" id="toggle-col-new">2026研读新译</button>
+{{EXTRA_TOGGLE_CHIP_HTML}}
 </div>
 <!-- Right: Search, Font size, Theme -->
 <div class="control-group">
@@ -910,6 +911,7 @@
 <span class="col-title">2026 研读新译本</span>
 <span class="col-tag">精研新译</span>
 </div>
+{{EXTRA_COL_HEAD_HTML}}
 </div>
 <!-- Paragraph-by-Paragraph Rows -->
 {{PARAGRAPHS_HTML}}
@@ -1066,9 +1068,10 @@
 
         // 5. Column Visibility Toggles
         const colBtns = document.querySelectorAll('.toggle-chip[data-col]');
+        const allCols = Array.from(colBtns).map(b => b.getAttribute('data-col'));
         function updateColumnLayout() {
             const activeCols = Array.from(colBtns).filter(b => b.classList.contains('active')).map(b => b.getAttribute('data-col'));
-            ['en', 'old', 'new'].forEach(col => {
+            allCols.forEach(col => {
                 const cells = document.querySelectorAll(`.col-${col}-cell`);
                 const show = activeCols.includes(col);
                 cells.forEach(c => c.classList.toggle('col-hidden', !show));
@@ -1085,6 +1088,7 @@
                 updateColumnLayout();
             });
         });
+        updateColumnLayout();
 
         // 6. Theme Switching
         const themeBtns = document.querySelectorAll('[data-theme-val]');

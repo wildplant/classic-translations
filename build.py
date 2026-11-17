@@ -159,6 +159,34 @@ def export_markdown_files(article_dir: Path, data: dict) -> None:
     (dist_article_dir / "old-zh.md").write_text("\n".join(old_lines), encoding="utf-8")
     (dist_article_dir / "en.md").write_text("\n".join(en_lines), encoding="utf-8")
 
+    # 4. 如有 2026 畅读译本 (fluent_zh)，同步导出 fluent-zh.md
+    if any("fluent_zh" in p for p in data["paragraphs"]):
+        fluent_lines = [
+            f"# {data['title_new_zh']}（{data['title_en']}）· 2026 畅读译本",
+            "",
+            f"- **作者**：{data['author_zh']}（{data['author']}）",
+            f"- **年份与背景**：{data['occasion']}",
+            f"- **原书篇序**：《荣耀之重：暨其他演讲》{data.get('book_chapter', '')}",
+            "- **译本说明**：2026 畅读译本（现代白话意合短句重铸，圣经引文统一采用中文和合本［神版］）",
+            "",
+            "---",
+            "",
+        ]
+        for p in data["paragraphs"]:
+            if p.get("section_title"):
+                fluent_lines.append(f"## {p['section_title']}")
+                fluent_lines.append("")
+            fluent_lines.append(to_markdown_text(p.get("fluent_zh", p["new_zh"])))
+            fluent_lines.append("")
+        if footnotes:
+            fluent_lines.extend(["---", "", "## 文献与历史考注", ""])
+            for fn_id in sorted(footnotes.keys(), key=lambda x: int(x)):
+                fluent_lines.append(f"[^{fn_id}]: {footnotes[fn_id]}")
+                fluent_lines.append("")
+        fluent_text = "\n".join(fluent_lines)
+        (article_dir / "fluent-zh.md").write_text(fluent_text, encoding="utf-8")
+        (dist_article_dir / "fluent-zh.md").write_text(fluent_text, encoding="utf-8")
+
 
 ZH_TO_ROMAN = {
     "第一篇": "PART I",
@@ -174,8 +202,10 @@ ZH_TO_ROMAN = {
 
 
 def build_article_html(reader_tpl: str, data: dict) -> str:
-    """根据模板与单篇 data.json 渲染独立的单文件三栏对照 HTML。"""
-    # 1. 段落跳转选项與三栏行
+    """根据模板与单篇 data.json 渲染独立的单文件三栏（或四栏可扩展）对照 HTML。"""
+    has_fluent = any("fluent_zh" in p for p in data["paragraphs"])
+
+    # 1. 段落跳转选项与对照行
     para_options = []
     para_rows = []
     for p in data["paragraphs"]:
@@ -197,6 +227,15 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
         en_html = render_cell_blocks(p["en"])
         old_html = render_cell_blocks(p["old_zh"])
         new_html = render_cell_blocks(p["new_zh"])
+        fluent_cell = ""
+        if has_fluent:
+            fluent_html = render_cell_blocks(p.get("fluent_zh", p["new_zh"]))
+            fluent_cell = f"""
+<!-- Fluent Translation -->
+<div class="compare-cell cell-new col-fluent-cell">
+<span class="row-badge">§ {num_pad}</span>
+{fluent_html}
+</div>"""
 
         row_block = f"""<article class="compare-row" data-row="{num}" id="row-{num}">
 <!-- English -->
@@ -213,7 +252,7 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
 <div class="compare-cell cell-new col-new-cell">
 <span class="row-badge">§ {num_pad}</span>
 {new_html}
-</div>
+</div>{fluent_cell}
 </article>"""
         para_rows.append(row_block)
 
@@ -243,6 +282,9 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
 </div>"""
         )
 
+    extra_chip_html = '<button class="toggle-chip" data-col="fluent" id="toggle-col-fluent">2026畅读译本</button>' if has_fluent else ""
+    extra_col_head_html = '<div class="col-head col-fluent-cell">\n<span class="col-title">2026 畅读译本</span>\n<span class="col-tag">畅读译本</span>\n</div>' if has_fluent else ""
+
     replacements = {
         "{{PAGE_TITLE}}": f"{data['author_zh']}《{data['title_new_zh']}》（{data['title_en']}）三栏逐段对照研读本",
         "{{TITLE_EN_UPPER}}": data["title_en"].upper(),
@@ -264,6 +306,8 @@ def build_article_html(reader_tpl: str, data: dict) -> str:
         "{{PARAGRAPHS_HTML}}": "\n".join(para_rows),
         "{{FOOTNOTES_DRAWER_HTML}}": "\n".join(drawer_items),
         "{{FOOTNOTES_JSON}}": json.dumps(footnotes, ensure_ascii=False),
+        "{{EXTRA_TOGGLE_CHIP_HTML}}": extra_chip_html,
+        "{{EXTRA_COL_HEAD_HTML}}": extra_col_head_html,
     }
 
     out_html = reader_tpl
@@ -279,6 +323,7 @@ def build_index_html(index_tpl: str, articles: list[dict]) -> str:
         crit_terms = " · ".join(c["term"].split("/")[0].strip() for c in data.get("critiques", [])[:4])
         chapter_str = data.get("book_chapter", "")
         roman_chapter = ZH_TO_ROMAN.get(chapter_str, "PART")
+        fluent_link = f'\n            <a class="btn-link-sec" href="articles/{data["id"]}/fluent-zh.md">查看 2026 畅读译本 (.md)</a>' if any("fluent_zh" in p for p in data["paragraphs"]) else ""
         entries.append(
             f"""<article class="article-entry">
     <div class="entry-sidebar">
@@ -304,7 +349,7 @@ def build_index_html(index_tpl: str, articles: list[dict]) -> str:
         </div>
         <div class="entry-actions">
             <a class="btn-read-primary" href="{data['slug']}.html">进入三栏精研对照本 →</a>
-            <a class="btn-link-sec" href="articles/{data['id']}/new-zh.md">查看 2026 纯净新译 (.md)</a>
+            <a class="btn-link-sec" href="articles/{data['id']}/new-zh.md">查看 2026 纯净新译 (.md)</a>{fluent_link}
         </div>
     </div>
 </article>"""
