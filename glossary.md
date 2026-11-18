@@ -23,6 +23,11 @@
 | **Erotic motive vs. Lust for the esoteric** | **爱欲动机 vs. 对圈内秘辛的贪恋** | 性爱动机（esoteric motive） | 勘正旧译底本将 `erotic` 误作 `esoteric` 的拼写讹误。 |
 | **To be in the know** | **成为“圈内知情人”** | 见知于人 | 指掌握小圈子内幕机密（呼应 `the people who know`），而非《论语》中“被人知晓赏识”。 |
 | **Pelagian** | **伯拉纠主义** | 伯拉纠主义 | 主张人无需神圣恩典、单凭天然本性与自由意志即可自我成全的异端思想。 |
+| **Transposition** | **高下转调** | 高下转换 | 兼含音乐“移调/配器改编”与哲学降维映射之意，指丰厚的高端媒介以一词多义/多音值方式在贫瘠的低端媒介中复调显现。 |
+| **Sacramental & Transubstantiates** | **圣礼式的 / 化体（变质）** | 领受（参赞）/ 融合 | 基督教圣礼神学核心概念：记号之中真实临在着所指之事；区别于单纯的约定符号（symbolical），并为道成肉身类比铺垫。 |
+| **Presumption vs. Despair** | **妄恃自矜 vs. 彻底绝望** | 猜测 vs. 绝望 | 基督教灵修伦理中违背望德（Hope）的两极罪恶对举，非一般意义上的“猜测”。 |
+| **Beatific Vision** | **至福直观** | 至福直观 | 经院神学核心术语，指蒙赎圣徒在永恒中面对面直观神本质之无上福乐。 |
+| **Etiolated & Bulb** | **黄化萎弱的 / 球茎** | 残余 / 蓓蕾 | 路易斯借植物学意象对比今生暗影与来世日光：“黄化”指缺光而失色，“球茎”指埋于土中尚待开花的根茎。 |
 
 ---
 
@@ -43,3 +48,8 @@
 | *Eyes being plucked out and hands lopped off* | 《马太福音》5:29-30 | **剜出来……砍下来** | 剜眼砍手 |
 | *We are saved by grace, that in our flesh dwells no good thing ... a new creature.* | 《以弗所书》2:8 / 《罗马书》7:18 / 《哥林多后书》5:17 | **你们得救是本乎恩** / **在我肉体之中，没有良善** / **新造的人** | 只有上帝的荣耀才能拯救我们……一个新的被造 |
 | *We are told in Scripture that those who ask get.* | 《马太福音》7:8 / 《路加福音》11:10 | **因为凡祈求的，就得着** | 求就会得着 |
+| *Spiritual things are spiritually discerned. The spiritual man judges all things and is judged of none.* | 《哥林多前书》2:14–15 | **唯有属灵的人才能看透……属灵的人能看透万事，却没有一人能看透了他** | 觉察属灵之事，需属灵眼光。属灵之人评判万事，无人能够评判他。 |
+| *Become as a little child* | 《马太福音》18:3 | **变成小孩子的样式** | 变成小孩 |
+| *We know not what we shall be ... made “like unto” our Master* | 《约翰一书》3:2 | **将来如何，还未显明……必要像他** | 我们不知道自己将会如何 |
+| *Flesh and blood cannot inherit the Kingdom* | 《哥林多前书》15:50 | **血肉之体不能承受神的国** | 血肉之体不能承受天国 |
+| *I walk in mirabilibus supra me* | 《诗篇》131:1（武加大 130:1） | **重大和测不透的事，我也不敢行** | 我这么说是在行“重大和测不透之事” |

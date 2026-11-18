@@ -66,7 +66,7 @@ python3 build.py
 | 一 | *The Weight of Glory* | 1941 | 荣耀之重 | 一 荣耀之重 | `OEBPS/Text/Section0004.xhtml` | `Section0005.xhtml` | 待译 |
 | 二 | *Learning in War-Time* | 1939 | **战时求学** | 二 战时求学 | `OEBPS/Text/Section0006.xhtml` | `Section0007.xhtml` | **已完成** (`03-learning-in-war-time`) |
 | 三 | *Why I Am Not a Pacifist* | 1940 | 我为何不是和平主义者 | 三 我缘何不是和平主义者 | `OEBPS/Text/Section0008.xhtml` | `Section0009.xhtml` | 待译 |
-| 四 | *Transposition* | 1944 | 高下转调 | 四 高下转换 | `OEBPS/Text/Section0010.xhtml` | `Section0011.xhtml` | 待译 |
+| 四 | *Transposition* | 1944 | **高下转调** | 四 高下转换 | `OEBPS/Text/Section0010.xhtml` | `Section0011.xhtml` | **已完成** (`04-transposition`) |
 | 五 | *Is Theology Poetry?* | 1944 | 神学是诗吗？ | 五 神学是诗？ | `OEBPS/Text/Section0012.xhtml` | `Section0013.xhtml` | 待译 |
 | 六 | *The Inner Ring* | 1944 | **核心圈** | 六 话圈内 | `OEBPS/Text/Section0014.xhtml` | `Section0015.xhtml` | **已完成** (`01-the-inner-ring`) |
 | 七 | *Membership* | 1945 | **互为肢体** | 七 和而不同 | `OEBPS/Text/Section0016.xhtml` | `Section0017.xhtml` | **已完成** (`02-membership`) |
